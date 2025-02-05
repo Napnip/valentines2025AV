@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Invitation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #ffb6c1, #ff4d4d);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 50px;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin: 20px 0;
+        }
+
+        .button-group {
+            margin: 30px;
+        }
+
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff1a1a;
+        }
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    transform: rotate(-45deg);
+    animation: float 8s infinite ease-in-out;
+    opacity: 0.8;
+    border-radius: 5px 5px 0 0;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: 10px;
+    top: 0;
+}
+.note {
+    font-family: 'Patrick Hand', cursive;
+    background: #fef3e2;
+    padding: 20px;
+    border: 2px solid #f0b195;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+    width: 80%;
+    margin: 20px auto;
+    text-align: left;
+    line-height: 1.8;
+    max-width: 600px;
+
+    opacity: 0;              /* Start invisible */
+    visibility: hidden;      /* Hidden initially */
+    transform: translateY(20px); /* Slight movement */
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Show state */
+.note.show {
+    opacity: 1;
+    visibility: visible;     /* Make it visible */
+    transform: translateY(0);
+}
+
+
+
+.note strong {
+    color: #d24d57;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap'); 
+
+
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? 💖</h1>
+    <p>I’d be the happiest person if you say yes! 😊</p>
+
+    <div class="button-group">
+        <button id="yes-btn">Yes</button>
+        <button id="no-btn">No</button>
+    </div>
+
+    <div class="note">
+        <p>Hello Wifey ko,</p>
+        <p>
+            I'm excited to have a date with you on <strong>15/02/2025</strong>, which is supposed to be for the 14th,  
+            but I'm having a final defense on that day. I hope you are as excited as I am and will enjoy our date,  
+            even if it's not that fancy. Someday, I will plan much better dates for future Valentines.  
+        </p>
+        <p>
+            I just want to say that <strong>I LOVE YOU SO MUCH</strong> and I will always be your Valentine.  
+            Hehe. ❤️  
+        </p>
+        <p>LOVE, <br> Your one and only hubby</p>
+    </div>
+    
+
+    <!-- Background music -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- JavaScript -->
+    <script>
+
+// Play music after a button is clicked
+document.getElementById('yes-btn').addEventListener('click', function() {
+    const note = document.querySelector('.note');
+    note.classList.add('show');  // Add the 'show' class to trigger the transition
+
+    // Play music
+    document.getElementById('bg-music').play();
+});
+
+document.getElementById('no-btn').addEventListener('click', function() {
+    alert("Naur Yes and tamang sagot");
+    document.getElementById('yes-btn').click(); // Simulate the "Yes" click
+
+    // Play music
+    document.getElementById('bg-music').play();
+});
+
+
+
+        // Generate more hearts with smaller intervals
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 5 + 3 + 's'; // Random float speed between 5-10 seconds
+    heart.style.zIndex = Math.floor(Math.random() * 3); // Some hearts will be layered differently
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000); // Remove the heart after 10 seconds
+}
+
+// Create hearts more frequently
+setInterval(createHeart, 100);
+
+    </script>
+</body>
+</html>
